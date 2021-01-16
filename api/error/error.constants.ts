@@ -23,4 +23,8 @@ export const errors = {
     httpStatus: 403,
     message: "JWT Token Not Found.",
   },
+  ACCOUNT_EXISTS: {
+    httpStatus: 400,
+    message: "Account already exists. Please login",
+  },
 };
