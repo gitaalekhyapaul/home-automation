@@ -27,4 +27,8 @@ export const errors = {
     httpStatus: 400,
     message: "Account already exists. Please login",
   },
+  WRONG_CREDS: {
+    httpStatus: 400,
+    message: "Wrong email or password.",
+  },
 };
