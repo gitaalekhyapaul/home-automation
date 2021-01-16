@@ -20,6 +20,7 @@
     "@types/mongodb": "^3.6.3",
     "@types/node": "^14.14.21",
     "@types/node-ssdp": "^3.3.1",
+    "@types/socket.io": "^2.1.12",
     "@types/yup": "^0.29.11",
     "tsc": "^1.20150623.0",
     "tsc-watch": "^4.2.9",
@@ -30,10 +31,12 @@
     "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.3",
     "node-ssdp": "^4.0.1",
+    "socket.io": "^3.1.0",
     "yup": "^0.32.8"
   }
 }
