@@ -31,4 +31,8 @@ export const errors = {
     httpStatus: 400,
     message: "Wrong email or password.",
   },
+  SOCKETIO_CONNECT_ERROR: {
+    httpStatus: 500,
+    message: "Could Not Connect to Socket.IO.",
+  },
 };
