@@ -12,15 +12,18 @@
     <link rel="stylesheet" href="/css/style.css" />
     <title>Home Automation</title>
   </head>
-  <body>
+  <body class="bg-dark bg-gradient text-white">
     <div class="container-fluid">
       <div class="row h-100">
-        <div class="col-6 mx-auto my-auto">
-          <div class="mb-3">
+        <div class="col-10 col-md-4 mx-auto my-auto">
+          <div class="text-center pb-5">
+            <h1 class="display-1">Dashboard</h1>
+          </div>
+          <div class="mt-5 mb-3">
             <label for="email" class="form-label">Email</label>
             <input
               type="email"
-              class="form-control"
+              class="form-control bg-dark text-white shadow-lg"
               id="email"
               placeholder="name@example.com"
             />
@@ -29,22 +32,26 @@
             <label for="password" class="form-label">Password</label>
             <input
               type="password"
-              class="form-control"
+              class="form-control bg-dark text-white shadow-lg"
               id="password"
               placeholder="Enter your password"
             />
           </div>
           <div class="btn-group d-flex w-100" role="group">
-            <div class="row">
-              <div class="col-6">
-                <button type="button" class="btn btn-primary" id="login-button">
+            <div class="row d-flex w-100 my-4">
+              <div class="col-6 text-center">
+                <button
+                  type="button"
+                  class="btn btn-success bg-gradient"
+                  id="login-button"
+                >
                   Login
                 </button>
               </div>
-              <div class="col-6">
+              <div class="col-6 text-center">
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  class="btn btn-primary bg-gradient"
                   id="signup-button"
                 >
                   Signup

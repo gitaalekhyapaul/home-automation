@@ -153,7 +153,7 @@ if (!sessionStorage.getItem("authToken")) {
 const generateCard = (device) => {
   return `
   <div class="col-sm-3 py-2">
-              <div class="card">
+              <div class="card bg-dark text-white shadow-lg">
                 <div class="card-header">${device.modelNumber}</div>
                 <div class="card-body">
                   <h5 class="card-title">NodeMCU </h5>
@@ -167,19 +167,19 @@ const generateCard = (device) => {
                   <input type="hidden" name="link" value="${
                     device.link
                   }"></input>
-                  <div class="btn-group d-flex align-items-center" role="group">
+                  <div class="btn-group w-100 d-flex justify-content-between align-items-center" role="group">
                     ${
                       device.exists === false
-                        ? `<div id="connect-button">
-                      <button type="button" class="btn btn-primary" id="connect-new">Connect</button>
+                        ? `<div id="connect-button mx-auto my-auto">
+                      <button type="button" class="btn btn-primary shadow-lg" id="connect-new">Add Device</button>
                     </div>`
                         : `
-                    <div id="connected-buttons">
-                    <button type="button" class="btn btn-danger" id="red-led">Red</button>
-                    <button type="button" class="btn btn-warning" id="yellow-led">
+                    <div id="connected-buttons mx-auto my-auto">
+                    <button type="button" class="btn btn-danger mx-1" id="red-led">Red</button>
+                    <button type="button" class="btn btn-warning mx-1" id="yellow-led">
                       Yellow
                     </button>
-                    <button type="button" class="btn btn-success" id="green-led" >
+                    <button type="button" class="btn btn-success mx-1" id="green-led" >
                       Green
                     </button>
                   </div>
