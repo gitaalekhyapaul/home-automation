@@ -7,6 +7,7 @@ import { SSDPService } from "./services/ssdp.service";
 import { SocketService } from "./services/socket.service";
 import authRoutes from "./auth/auth.routes";
 import deviceRoutes from "./device/device.routes";
+import { describeDevice } from "./device/device.service";
 import { errorHandler } from "./error/error.handler";
 import { Server } from "http";
 import { Socket } from "socket.io";
@@ -55,9 +56,21 @@ Promise.all([
   .then((expressServer: Server) => {
     return SocketService.getInstance().initalize(expressServer);
   })
-  .then((socketServer) => {
+  .then(async (socketServer) => {
     socketServer.on("connection", (socket: Socket) => {
       console.log(`${socket.id} has connected.`);
+    });
+    const client = await SSDPService.getInstance().getClient();
+    client!.on("response", async (headers, statusCode, rinfo) => {
+      console.dir(headers);
+      console.dir(statusCode);
+      console.dir(rinfo);
+      const deviceDescription = await describeDevice(
+        headers.ST!,
+        headers.USN!,
+        headers.LOCATION!
+      );
+      socketServer.sockets.emit("new-device", deviceDescription);
     });
   })
   .catch((err) => {
