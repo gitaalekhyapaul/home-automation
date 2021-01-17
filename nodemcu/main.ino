@@ -10,6 +10,7 @@
  */
 //Importing Libraries
 #include <ESP8266SSDP.h>
+#include <ArduinoJson.h>
 #include <ESP8266WiFi.h>
 #include <ESP8266WebServer.h>
 #include <ESP8266mDNS.h>
@@ -32,6 +33,8 @@ void startMDNS();
 void handleDescription();
 void startWebServer();
 void configureSSDP();
+void toggleLed();
+void handle404NotFound();
 
 void setup()
 {
@@ -47,6 +50,58 @@ void loop()
 {
     MDNS.update();
     server.handleClient();
+}
+
+void handle404NotFound()
+{
+    Serial.println("API_ERROR:: 404 RESOURCE NOT FOUND");
+    DynamicJsonDocument res(1024);
+    res["success"] = false;
+    res["message"] = "Resource Not Found";
+    char response[1024];
+    serializeJson(res, response);
+    server.send(404, "application/json", response);
+}
+
+void toggleLed()
+{
+    int ledType = -1;
+    DynamicJsonDocument req(1024);
+    deserializeJson(req, server.arg("plain"));
+    const char *led = req["ledType"];
+    if (strcmp(led, "red") == 0)
+    {
+        ledType = 1;
+    }
+    else if (strcmp(led, "yellow") == 0)
+    {
+        ledType = 2;
+    }
+    else if (strcmp(led, "green") == 0)
+    {
+        ledType = 3;
+    }
+    switch (ledType)
+    {
+    case 1:
+    {
+        digitalWrite(redPin, !digitalRead(redPin));
+        break;
+    }
+    case 2:
+    {
+        digitalWrite(yellowPin, !digitalRead(yellowPin));
+        break;
+    }
+    case 3:
+    {
+        digitalWrite(greenPin, !digitalRead(greenPin));
+        break;
+    }
+    default:
+        break;
+    }
+    server.send(200, "text/html", "OK");
 }
 
 void configureSSDP()
@@ -71,6 +126,8 @@ void configureSSDP()
 void startWebServer()
 {
     server.on("/description.xml", HTTP_GET, handleDescription);
+    server.on("/api/v1/ledChange", HTTP_POST, toggleLed);
+    server.onNotFound(handle404NotFound);
     server.begin();
     MDNS.addService("http", "tcp", PORT);
     Serial.print("Web server started on Port ");
