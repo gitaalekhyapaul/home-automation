@@ -21,10 +21,7 @@
 #define redPin D6
 #define yellowPin D5
 #define greenPin D1
-
-//Init server and wifiManager
-ESP8266WebServer server(PORT);
-WiFiManager wifiManager;
+#define statusLed D7
 
 void wifiConnect();
 String getHostname();
@@ -35,6 +32,11 @@ void startWebServer();
 void configureSSDP();
 void toggleLed();
 void handle404NotFound();
+void showStatus();
+
+//Init server and wifiManager
+ESP8266WebServer server(PORT);
+WiFiManager wifiManager;
 
 void setup()
 {
@@ -44,12 +46,26 @@ void setup()
     startMDNS();
     startWebServer();
     configureSSDP();
+    showStatus();
 }
 
 void loop()
 {
     MDNS.update();
     server.handleClient();
+}
+
+void showStatus()
+{
+    digitalWrite(statusLed, HIGH);
+    delay(250);
+    digitalWrite(statusLed, LOW);
+    delay(250);
+    digitalWrite(statusLed, HIGH);
+    delay(250);
+    digitalWrite(statusLed, LOW);
+    delay(250);
+    digitalWrite(statusLed, HIGH);
 }
 
 void handle404NotFound()
@@ -136,6 +152,7 @@ void startWebServer()
 
 void handleDescription()
 {
+    digitalWrite(statusLed, LOW);
     SSDP.schema(server.client());
 }
 
@@ -158,6 +175,7 @@ void initPins()
     pinMode(redPin, OUTPUT);
     pinMode(yellowPin, OUTPUT);
     pinMode(greenPin, OUTPUT);
+    pinMode(statusLed, OUTPUT);
 }
 
 String getHostname()
