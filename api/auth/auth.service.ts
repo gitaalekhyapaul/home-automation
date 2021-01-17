@@ -15,6 +15,7 @@ export const signup = async (
   const { result } = await db.insertOne({
     email: email,
     password: hashedPassword,
+    devices: [],
   });
   if (result.ok) return true;
 };
