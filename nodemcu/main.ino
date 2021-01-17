@@ -117,7 +117,7 @@ void configureSSDP()
     SSDP.setModelURL("http://" + hostname + ".local");
     SSDP.setManufacturer("Gita Alekhya Paul");
     SSDP.setManufacturerURL("https://esp8266.gitaalekhyapaul.xyz");
-    SSDP.setDeviceType("urn:gitaalekhyapaul:device:ESP8266:1");
+    SSDP.setDeviceType("urn:schemas-upnp-org:device:ESP8266:1");
     SSDP.setInterval(1000);
     SSDP.begin();
     Serial.println("SSDP Completed.");

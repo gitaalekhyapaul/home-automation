@@ -8,7 +8,7 @@ import { userSchema } from "../auth/auth.schema";
 
 export const searchDevices = async () => {
   const client = await SSDPService.getInstance().getClient();
-  client!.search("urn:gitaalekhyapaul:device:ESP8266:1");
+  client!.search("urn:schemas-upnp-org:device:ESP8266:1");
 };
 
 export const findDevice = async (
