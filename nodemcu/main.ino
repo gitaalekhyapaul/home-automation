@@ -101,16 +101,19 @@ void toggleLed()
     {
     case 1:
     {
+        Serial.print("RED LED Toggled!\n");
         digitalWrite(redPin, !digitalRead(redPin));
         break;
     }
     case 2:
     {
+        Serial.print("YELLOW LED Toggled!\n");
         digitalWrite(yellowPin, !digitalRead(yellowPin));
         break;
     }
     case 3:
     {
+        Serial.print("GREEN LED Toggled!\n");
         digitalWrite(greenPin, !digitalRead(greenPin));
         break;
     }

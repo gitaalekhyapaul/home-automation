@@ -12,6 +12,7 @@ const handleGetSearch = async (
   next: NextFunction
 ) => {
   try {
+    console.log("M-SEARCH QUERY");
     await searchDevices();
     res.json({
       success: true,
