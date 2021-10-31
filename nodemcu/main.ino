@@ -135,7 +135,7 @@ void configureSSDP()
     SSDP.setModelNumber(WiFi.macAddress());
     SSDP.setModelURL("http://" + hostname + ".local");
     SSDP.setManufacturer("Gita Alekhya Paul");
-    SSDP.setManufacturerURL("https://esp8266.gitaalekhyapaul.xyz");
+    SSDP.setManufacturerURL("https://esp8266.gitaalekhyapaul.com");
     SSDP.setDeviceType("urn:schemas-upnp-org:device:ESP8266:1");
     SSDP.setInterval(1000);
     SSDP.begin();
